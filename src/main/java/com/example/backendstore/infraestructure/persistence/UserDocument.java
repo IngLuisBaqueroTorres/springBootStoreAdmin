@@ -1,4 +1,4 @@
-package com.example.backendstore.infraestructure;
+package com.example.backendstore.infraestructure.persistence;
 
 
 import org.springframework.data.annotation.Id;

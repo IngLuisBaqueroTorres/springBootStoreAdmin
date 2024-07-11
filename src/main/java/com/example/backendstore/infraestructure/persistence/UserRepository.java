@@ -1,4 +1,4 @@
-package com.example.backendstore.infraestructure;
+package com.example.backendstore.infraestructure.persistence;
 
 import com.example.backendstore.domain.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
