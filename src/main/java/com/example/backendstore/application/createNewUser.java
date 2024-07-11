@@ -1,4 +1,4 @@
 package com.example.backendstore.application;
 
-public class cerateNewUser {
+public class createNewUser {
 }

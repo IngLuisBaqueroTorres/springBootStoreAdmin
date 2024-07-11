@@ -1,6 +1,7 @@
 package com.example.backendstore.infraestructure.config;
 
 import com.example.backendstore.infraestructure.service.JWTService;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -12,18 +13,19 @@ import reactor.core.publisher.Mono;
 import java.util.Collection;
 import java.util.List;
 
-public class BearerTokenAuthenticationToken implements ReactiveAuthenticationManager {
+@Configuration
+public class AuthManager implements ReactiveAuthenticationManager {
 
     final JWTService jwtService;
     final ReactiveUserDetailsService users;
-    public BearerTokenAuthenticationToken(JWTService jwtService, ReactiveUserDetailsService users) {
+    public AuthManager(JWTService jwtService, ReactiveUserDetailsService users) {
         this.jwtService = jwtService;
         this.users = users;
     }
 
     @Override
     public Mono<Authentication> authenticate(Authentication authentication) {
-        return Mono.justOrEmpty(authentication.getCredentials())
+        return Mono.justOrEmpty(authentication)
                 .cast(BearerToken.class)
                 .flatMap(auth ->{
                     String userName = jwtService.getUserName(auth.getCredentials());
